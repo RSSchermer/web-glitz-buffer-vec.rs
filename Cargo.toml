@@ -1,0 +1,13 @@
+[package]
+name = "web-glitz-buffer-vec"
+version = "0.1.0"
+description = "Implements growing WebGlitz memory buffers for slices of data."
+authors = ["Roland Schermer <roland0507@gmail.com>"]
+edition = "2018"
+repository = "https://github.com/RSSchermer/web-glitz-buffer-vec.rs"
+homepage = "https://github.com/RSSchermer/web-glitz-buffer-vec.rs"
+license = "MIT"
+readme = "README.md"
+
+[dependencies]
+web-glitz = { path = "../web-draw-2.rs/web_glitz" }
