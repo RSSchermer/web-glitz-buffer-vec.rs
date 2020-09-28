@@ -10,4 +10,4 @@ license = "MIT"
 readme = "README.md"
 
 [dependencies]
-web-glitz = { path = "../web-draw-2.rs/web_glitz" }
+web-glitz = "0.2.0"
