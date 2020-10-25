@@ -1,6 +1,6 @@
 [package]
 name = "web-glitz-buffer-vec"
-version = "0.1.0"
+version = "0.1.1"
 description = "Implements growing WebGlitz memory buffers for slices of data."
 authors = ["Roland Schermer <roland0507@gmail.com>"]
 edition = "2018"
