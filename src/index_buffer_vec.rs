@@ -139,6 +139,8 @@ where
 
     /// Replaces the data in the buffer with the given `data`, resizing the buffer if necessary.
     ///
+    /// Returns `true` if a new buffer was allocated, `false` otherwise.
+    ///
     /// # Guarantees
     ///
     /// Any task submitted from the same thread that called `update` after the update will see the
@@ -162,7 +164,7 @@ where
     /// Here `context` is a WebGlitz [RenderingContext].
     ///
     /// [RenderingContext]: web_glitz::runtime::RenderingContext
-    pub fn update<D>(&mut self, data: D)
+    pub fn update<D>(&mut self, data: D) -> bool
     where
         D: Borrow<[T]> + Send + Sync + 'static,
     {
@@ -176,11 +178,15 @@ where
 
         let current_capacity = buffer.len();
 
-        if let Some(new_capacity) = new_capacity_amortized(current_capacity, *len) {
+        let reallocated = if let Some(new_capacity) = new_capacity_amortized(current_capacity, *len) {
             *buffer = context
                 .create_index_buffer_uninit(new_capacity, buffer.usage_hint())
                 .into();
-        }
+
+            true
+        } else {
+            false
+        };
 
         let view = buffer.get(0..*len).unwrap();
 
@@ -191,6 +197,8 @@ where
         };
 
         context.submit(upload_task);
+
+        reallocated
     }
 
     /// The number of elements this vector can hold without allocating a new buffer.
