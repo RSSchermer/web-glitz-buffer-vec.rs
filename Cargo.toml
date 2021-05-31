@@ -10,4 +10,4 @@ license = "MIT"
 readme = "README.md"
 
 [dependencies]
-web-glitz = "0.2.1"
+web-glitz = "0.2.3"
